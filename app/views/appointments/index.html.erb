@@ -1,0 +1,29 @@
+<h1>Appointments</h1>
+<%= link_to 'Book Appointment', new_appointment_path, class: "btn btn-primary"
+%>
+<table>
+<thead>
+<tr>
+<th>Patient</th>
+<th>Doctor</th>
+<th>Date</th>
+<th>Status</th>
+<th>Payment Status</th>
+</tr>
+</thead>
+<tbody>
+<% @appointments.each do |appointment| %>
+<tr>
+<td><%= appointment.patient.name %></td>
+<td><%= appointment.doctor.name %></td>
+<td><%= appointment.appointment_date.strftime('%Y-%m-%d %H:%M') 
+%></td>
+<td><%= appointment.status.present? ? appointment.status.humanize : "N/A" %></td>
+<td style="color: <%= appointment.payment_status == 'paid' ? 'green' : 'red' %>">
+  <%= appointment.payment_status.present? ? appointment.payment_status.humanize : "N/A" %>
+</td>
+
+</tr>
+<% end %>
+</tbody>
+</table>

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  specialty: MyString
+  address: MyString
+  joining_date: 2025-02-18
+  mobile_no: MyString
+  years_of_experience: 1
+  availability: false
+
+two:
+  name: MyString
+  specialty: MyString
+  address: MyString
+  joining_date: 2025-02-18
+  mobile_no: MyString
+  years_of_experience: 1
+  availability: false

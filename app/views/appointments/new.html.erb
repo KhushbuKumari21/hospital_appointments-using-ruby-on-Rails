@@ -1,0 +1,44 @@
+<h1>Book an Appointment</h1>
+
+<%= form_with(model: @appointment, local: true) do |f| %>
+  <% if @appointment.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>There were some errors:</h4>
+      <ul>
+        <% @appointment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :patient_id, "Patient" %>
+    <%= f.collection_select :patient_id, @patients, :id, :name, prompt: "Select Patient", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :doctor_id, "Doctor" %>
+    <%= f.collection_select :doctor_id, @doctors, :id, :name, prompt: "Select Doctor", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :appointment_date, "Appointment date" %>
+    <%= f.datetime_local_field :appointment_date, class: "form-control" %>
+  </div>
+  <div class="form-group">
+  <%= f.label :status %>
+  <%= f.select :status, Appointment.statuses.keys.map { |w| [w.humanize, w] }, selected: @appointment.status, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :payment_status %>
+  <%= f.select :payment_status, Appointment.payment_statuses.keys.map { |w| [w.humanize, w] }, selected: @appointment.payment_status, class: "form-control" %>
+</div>
+
+  <div class="form-group">
+    <%= f.submit 'Book Appointment', class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Appointments', appointments_path, class: "btn btn-secondary" %>
